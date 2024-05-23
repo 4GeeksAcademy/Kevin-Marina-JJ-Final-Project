@@ -15,10 +15,7 @@ export const Trainer = () => {
         <div className="trainer-container">
             <TrainerCalendar />
             <TrainerView />
-            <TrainerExercise />
-            {/* <div className="trainer-exercise">
-                <TrainerUserDetail />
-            </div> */}
+
         </div>
     );
 };

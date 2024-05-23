@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link, useParams } from "react-router-dom";
+import { Context } from "../../store/appContext";
 
 
 const trainerView = () => {
   const { id } = useParams();
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
+  const { store } = useContext(Context);
 
   useEffect(() => {
     const fetchTrainerUsers = async () => {
@@ -24,13 +26,13 @@ const trainerView = () => {
     fetchTrainerUsers();
   }, [id]);
 
-console.log(users)
+  console.log(users)
   return (
     <div className="userCard">
-      
+
       <h1>Users</h1>
 
-      <Link to={`/trainer`}>
+      <Link to={`/trainer/${store.user_id}/${id}`}>
         <button>Details</button>
       </Link>
 

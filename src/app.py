@@ -161,14 +161,15 @@ def add_or_update_user_data(id):
 
         return jsonify(serialized_user_data), 200
     else:
-        print ("ENTRO AQUI", existing_user_data)
+       
         new_user_data = User_data(
             user_name=data.get("user_name"),
             user_weight=data.get("user_weight"),
             user_height=data.get("user_height"),
             user_illness=data.get("user_illness"),
             user_objetives=data.get("user_objetives"),
-            user_id=id,
+            user_id=get_jwt_identity() ,
+            trainer_id=1,
         )
 
         db.session.add(new_user_data)
