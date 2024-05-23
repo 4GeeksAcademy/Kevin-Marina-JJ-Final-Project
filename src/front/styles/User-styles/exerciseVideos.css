@@ -1,0 +1,57 @@
+.videos-section {
+    margin-top: 20px;
+}
+
+.videos-heading {
+    margin-bottom: 20px;
+}
+
+.videos-exercise-name {
+    color: #02b532;
+    text-transform: capitalize;
+}
+
+.videos-container {
+    display: flex;
+    gap: 20px;
+}
+
+.exercise-video {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    width: 200px;
+    /* Ajusta el tamaño según tu diseño */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.exercise-video:hover {
+    transform: scale(1.05);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.video-info {
+    padding: 10px;
+}
+
+.video-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.video-channel {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}

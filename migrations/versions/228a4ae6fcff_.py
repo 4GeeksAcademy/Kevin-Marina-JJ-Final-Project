@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: d12c88d52b38
+Revision ID: 228a4ae6fcff
 Revises: 
-Create Date: 2024-05-08 18:43:43.781039
+Create Date: 2024-05-22 18:55:22.179350
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd12c88d52b38'
+revision = '228a4ae6fcff'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,10 +36,10 @@ def upgrade():
     )
     op.create_table('trainer_data',
     sa.Column('trainer_data_id', sa.Integer(), nullable=False),
-    sa.Column('trainer', sa.Integer(), nullable=True),
+    sa.Column('trainer_id', sa.Integer(), nullable=True),
     sa.Column('trainer_name', sa.String(length=50), nullable=False),
     sa.Column('profile_picture', sa.String(length=250), nullable=True),
-    sa.ForeignKeyConstraint(['trainer'], ['trainer.id'], ),
+    sa.ForeignKeyConstraint(['trainer_id'], ['trainer.id'], ),
     sa.PrimaryKeyConstraint('trainer_data_id')
     )
     op.create_table('user_data',
@@ -50,8 +50,8 @@ def upgrade():
     sa.Column('user_height', sa.Integer(), nullable=True),
     sa.Column('user_illness', sa.String(length=250), nullable=False),
     sa.Column('user_objetives', sa.String(length=250), nullable=True),
-    sa.Column('trainer_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['trainer_id'], ['trainer_data.trainer_data_id'], ),
+    sa.Column('trainer_data_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['trainer_data_id'], ['trainer_data.trainer_data_id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

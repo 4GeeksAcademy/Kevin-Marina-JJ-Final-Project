@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../../styles/Trainer-styles/trainer.css";
 
 import { Context } from "../../store/appContext";
-import TrainerExercise from "../../component/Trainer/trainerExercise.jsx";
+import TrainerUserDetail from "./trainerUserDetail.js";
 import TrainerCalendar from "../../component/Trainer/trainerCalendar.jsx";
+import TrainerView from "../../component/Trainer/trainerView.jsx";
+import TrainerExercise from "../../component/Trainer/trainerExercise.jsx";
 
 export const Trainer = () => {
     const { store, actions } = useContext(Context);
@@ -12,7 +14,8 @@ export const Trainer = () => {
     return (
         <div className="trainer-container">
             <TrainerCalendar />
-            <TrainerExercise />
+            <TrainerView />
+
         </div>
     );
 };

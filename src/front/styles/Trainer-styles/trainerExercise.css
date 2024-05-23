@@ -1,0 +1,61 @@
+.trainer-exercise-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.exercise-table-container {
+    width: 100%;
+}
+
+.form-container {
+    width: 80%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.days-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.day-section {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.exercise-select,
+.reps-select {
+    width: 100%;
+    padding: 5px;
+}
+
+.add-button {
+    padding: 5px 10px;
+    margin-top: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.save-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}

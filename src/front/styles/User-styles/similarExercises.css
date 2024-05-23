@@ -1,0 +1,67 @@
+.similar-exercises-container {
+    margin-top: 20px;
+}
+
+.similar-exercises-heading {
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #02b532;
+    text-transform: capitalize;
+}
+
+.similar-exercises-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.similar-exercises-scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.similar-exercises-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.similar-exercises-scroll-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.similar-exercises-scroll-container .exercise-card {
+    min-width: 250px;
+    /* Adjust the size according to your design */
+    margin-right: 20px;
+    /* Spacing between cards */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.similar-exercises-scroll-container .exercise-card:hover {
+    transform: scale(1.05);
+}
+
+.exercise-card img {
+    width: 100%;
+    height: auto;
+}
+
+.exercise-card .exercise-info {
+    padding: 10px;
+}
+
+.exercise-card .exercise-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.exercise-card .exercise-description {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
