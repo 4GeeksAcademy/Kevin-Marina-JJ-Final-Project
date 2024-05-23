@@ -64,8 +64,9 @@ const getState = ({ getStore, setStore }) => {
 				}
 				if (response.ok) {
 					const data = await response.json()
+					const decoded = jwtDecode(data.access_token);
 					sessionStorage.setItem("token", data.access_token);
-					setStore({ token: data.access_token });
+					setStore({ user_id: decoded.sub, token: data.access_token, role: decoded.role });
 					return true;
 				}
 			},

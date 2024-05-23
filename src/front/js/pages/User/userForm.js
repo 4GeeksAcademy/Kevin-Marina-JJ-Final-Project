@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./../../../styles/User-styles/userForm.css";
 import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
 
 const userForm = () => {
     const { store, actions } = useContext(Context);
-    const navigate = useNavigate();
+    const navigate = useNavigate(``);
     const [formData, setFormData] = useState({
         user_name: '',
         //user_age: '',
@@ -15,6 +15,12 @@ const userForm = () => {
         user_objetives: ''
     });
 
+    const [valid, setValid] = useState(false);
+    useEffect(() => {
+        if (valid) {
+            navigate(`/user/${store.user_id}`);
+        }
+    }, [valid]);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -37,10 +43,8 @@ const userForm = () => {
                 alert('Please, complete all fields.');
                 return;
             } else {
-                
                 await actions.postUserData(formData);
-                
-                navigate(`/user/${store.user_id}`);
+                setValid(true)
             }
         } catch (error) {
             console.error('Error de red:', error);
