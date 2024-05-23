@@ -9,3 +9,28 @@
     width: 100%;
     height: 100%;
 }
+
+.userCard {
+    border: 1px solid #02b532;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 16px;
+  }
+  
+  .userCard h1 {
+    margin-bottom: 8px;
+    font-size: 24px;
+  }
+  
+  .userCard button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #02b532;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
