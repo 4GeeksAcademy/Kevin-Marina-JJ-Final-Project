@@ -9,6 +9,7 @@ const getState = ({ getStore, setStore }) => {
 			user_id: sessionStorage.getItem("user_id") || null,
 			routine: JSON.parse(sessionStorage.getItem("userRoutine")) || null,
 			user_data: JSON.parse(sessionStorage.getItem("user_data")) || null,
+			user_image: sessionStorage.getItem("user_image") || null,
 			exerciseOptions: {
 				method: 'GET',
 				headers: {
@@ -31,7 +32,8 @@ const getState = ({ getStore, setStore }) => {
 				sessionStorage.removeItem("user_id");
 				sessionStorage.removeItem("userRoutine");
 				sessionStorage.removeItem("user_data");
-				setStore({ token: "", role: null, user_id: null, routine: null });
+				sessionStorage.removeItem("user_image");
+				setStore({ token: "", role: null, user_id: null, routine: null, user_image: null });
 				Swal.fire({
 					title: "Logged out",
 					text: "You have been logged out",
@@ -124,6 +126,26 @@ const getState = ({ getStore, setStore }) => {
 						title: "Error",
 						text: "Error sending user data",
 						type: "error",
+						showConfirmButton: false,
+						timer: 1000,
+					});
+				}
+			},
+			deleteUser: async (userId) => {
+				const store = getStore();
+
+				const response = await fetch(`${process.env.BACKEND_URL}/delete_user/${userId}`, {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: "Bearer " + store.token
+					},
+				});
+				if (response.ok) {
+					Swal.fire({
+						title: "Success",
+						text: "User deleted",
+						type: "success",
 						showConfirmButton: false,
 						timer: 1000,
 					});
@@ -240,6 +262,87 @@ const getState = ({ getStore, setStore }) => {
 					});
 				}
 			},
+			/* fetchUserImage: async () => {
+				const store = getStore();
+				try {
+					const imgResponse = await fetch(`${process.env.BACKEND_URL}/user/${store.user_id}/profile_picture`, {
+						headers: {
+							Authorization: 'Bearer ' + store.token
+						}
+					});
+
+					if (imgResponse.ok) {
+						const imgData = await imgResponse.json();
+						const userImage = `data:${imgData.mimetype};base64,${imgData.img}`;
+						sessionStorage.setItem("user_image", userImage);
+						setStore({ user_image: userImage });
+					} else {
+
+						Swal.fire({
+							title: "Error",
+							text: "Error fetching user image",
+							type: "error",
+							showConfirmButton: false,
+							timer: 1000,
+						}) ;
+					}
+				} catch (error) {
+					Swal.fire({
+						title: "Error",
+						text: "Error fetching user image",
+						type: "error",
+						showConfirmButton: false,
+						timer: 1000,
+					});
+				}
+			},
+			updateUserImage: async (file) => {
+				const store = getStore();
+				const formData = new FormData();
+				formData.append("user_profile_picture", file);
+				const method = store.user_image ? 'PUT' : 'POST';
+
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/user/${store.user_id}/profile_picture`, {
+						method: method,
+						headers: {
+							Authorization: `Bearer ${store.token}`
+						},
+						body: formData,
+					});
+
+					if (response.ok) {
+						const data = await response.json();
+						console.log(data);
+						sessionStorage.setItem("user_image", data.img);
+						setStore({ user_image: data.img });
+						Swal.fire({
+							title: "Success",
+							text: "Profile picture updated successfully",
+							type: "success",
+							showConfirmButton: false,
+							timer: 1000,
+						});
+					} else {
+						Swal.fire({
+							title: "Error",
+							text: "Error updating user image",
+							type: "error",
+							showConfirmButton: false,
+							timer: 1000,
+						});
+					}
+				} catch (error) {
+					console.error('Error updating user image:', error);
+					Swal.fire({
+						title: "Error",
+						text: "An error occurred while updating the profile picture",
+						type: "error",
+						showConfirmButton: false,
+						timer: 1000,
+					});
+				}
+			} */
 
 		},
 	};

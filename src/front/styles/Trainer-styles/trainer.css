@@ -2,66 +2,6 @@
   display: flex;
   flex-direction: column;
   margin-top: 90px;
-  justify-content: center;
-  align-items: center;
+
   width: 100%;
-}
-
-.trainer-exercise {
-  width: 100%;
-  height: 100%;
-}
-
-.userCard {
-  padding: 20px;
-  width: 100%;
-}
-
-.user-list {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  gap: 20px;
-}
-
-.user-card {
-  border: 1px solid #02b532;
-  border-radius: 8px;
-  padding: 16px;
-  min-width: 250px;
-  max-width: 250px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 16px;
-  background-color: #fff;
-  transition: box-shadow 0.3s;
-}
-
-.user-card:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.user-card h2 {
-  margin-top: 0;
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-
-.user-card p {
-  margin: 8px 0;
-}
-
-.user-card button {
-  padding: 8px 16px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: #02b532;
-  color: white;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-  margin-top: 8px;
-}
-
-.user-card button:hover {
-  background-color: #029422;
 }

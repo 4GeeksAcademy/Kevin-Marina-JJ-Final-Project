@@ -1,15 +1,22 @@
 import os
-from flask import Flask, request, jsonify, url_for, send_from_directory, abort
+from flask import Flask, request, jsonify, url_for, send_from_directory, abort, Response
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
-from api.models import db, Trainer, Trainer_data, User, User_data, Routines, Exercise
+from api.models import db, Trainer, Trainer_data, User, User_data, Routines, Exercise, Image
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from datetime import timedelta
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
+import base64
+from flask_mail import Mail, Message
+from itsdangerous import URLSafeTimedSerializer
+from dotenv import load_dotenv
+
+load_dotenv()
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
@@ -32,6 +39,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
 
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT'))
+app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS').lower() in ['true', '1', 'yes']
+app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL').lower() in ['true', '1', 'yes']
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
+app.config['SECRET_KEY'] = os.getenv('MAIL_SECRET_KEY')
+
+mail = Mail(app)
 # add the admin
 setup_admin(app)
 setup_commands(app)
@@ -148,7 +165,6 @@ def add_or_update_user_data(id):
     data = request.json
     existing_user_data = User_data.query.filter_by(user_id=id).first()
     if existing_user_data:
-        print ("Existe user Data", existing_user_data)
         existing_user_data.user_name = data.get("user_name", existing_user_data.user_name)
         existing_user_data.user_weight = data.get("user_weight", existing_user_data.user_weight)
         existing_user_data.user_height = data.get("user_height", existing_user_data.user_height)
@@ -180,6 +196,85 @@ def add_or_update_user_data(id):
         serialized_new_user_data = new_user_data.serialize()
 
         return jsonify(serialized_new_user_data), 200
+    
+    
+@app.route('/user/<int:user_id>/profile_picture', methods=['POST', 'PUT'])
+@jwt_required()
+def upload_user_profile_picture(user_id):
+    user_data = User_data.query.filter_by(user_id=user_id).first()
+    if not user_data:
+        raise APIException('User not found', status_code=404)
+
+    imagen = request.files.get('user_profile_picture')
+    if not imagen:
+        raise APIException('No image selected', status_code=400)
+
+    filename = secure_filename(imagen.filename)
+    mimetype = imagen.mimetype
+    img_bytes = imagen.read()
+    img_base64 = base64.b64encode(img_bytes).decode('utf-8')
+
+    if request.method == 'POST':
+        
+        existing_image = Image.query.filter_by(user_data_id=user_data.id).first()
+        if existing_image:
+            return jsonify({'error': 'Image already exists, use PUT to update'}), 400
+
+        new_image = Image(
+            user_data_id=get_jwt_identity(),
+            img=img_bytes,
+            name=filename,
+            mimetype=mimetype,
+        )
+        db.session.add(new_image)
+        db.session.commit()
+
+        serialized_image = {
+            'id': new_image.id,
+            'user_data_id': new_image.user_data_id,
+            'name': new_image.name,
+            'mimetype': new_image.mimetype,
+            'img': img_base64
+        }
+        return jsonify(serialized_image), 200
+
+    elif request.method == 'PUT':
+        existing_image = Image.query.filter_by(user_data_id=get_jwt_identity()).first()
+        if not existing_image:
+            return jsonify({'error': 'Image not found, use POST to create'}), 404
+
+        existing_image.img = img_bytes
+        existing_image.name = filename
+        existing_image.mimetype = mimetype
+        db.session.commit()
+
+        serialized_image = {
+            'id': existing_image.id,
+            'user_data_id': get_jwt_identity(),
+            'name': existing_image.name,
+            'mimetype': existing_image.mimetype,
+            'img': img_base64
+        }
+        return jsonify(serialized_image), 200
+
+    return jsonify({'error': 'Invalid method'}), 405
+
+
+# Get user profile picture
+@app.route('/user/<int:user_id>/profile_picture', methods=['GET'])
+@jwt_required()
+def get_user_profile_picture(user_id):
+    user_profile_image = Image.query.filter_by(user_data_id=user_id).first()
+    if not user_profile_image:
+        raise APIException('User profile image not found', status_code=404)
+
+    image_data = {
+        'id': user_profile_image.id,
+        'img': base64.b64encode(user_profile_image.img).decode('utf-8'),
+        'name': user_profile_image.name,
+        'mimetype': user_profile_image.mimetype
+    }
+    return jsonify(image_data), 200
 
 # Trainer Endpoints
 @app.route('/trainer', methods=['POST'])
@@ -395,6 +490,66 @@ def delete_exercise(exercise_id):
     db.session.commit()
     
     return jsonify({'message': 'Exercise deleted'}), 200
+
+
+#Forgot Password endpoint
+def generate_password_reset_token(email):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    return serializer.dumps(email, salt='password-reset-salt')
+
+def confirm_token(token, expiration=3600):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    try:
+        email = serializer.loads(
+            token,
+            salt='password-reset-salt',
+            max_age=expiration
+        )
+    except:
+        return False
+    return email
+
+@app.route('/reset_password', methods=['POST'])
+def reset_password_request():
+    data = request.json
+    email = data.get('email')
+
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({"message": "Email not found"}), 404
+
+    token = generate_password_reset_token(email)
+    reset_url = url_for('reset_password', token=token, _external=True)
+
+    msg = Message(
+        'Password Reset Request',
+        recipients=[email],
+        body=f'Your password reset link is: {reset_url}',
+        sender=app.config['MAIL_DEFAULT_SENDER'] 
+    )
+    mail.send(msg)
+
+    return jsonify({"message": "Password reset email has been sent."}), 200
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    try:
+        email = confirm_token(token)
+    except:
+        return jsonify({"message": "Invalid or expired token"}), 400
+
+    if request.method == 'POST':
+        data = request.json
+        new_password = data.get('password')
+
+        user = User.query.filter_by(email=email).first()
+        if user:
+            user.password = new_password
+            db.session.commit()
+            return jsonify({"message": "Password has been reset successfully"}), 200
+        return jsonify({"message": "User not found"}), 404
+
+    return jsonify({"message": "Provide a new password"}), 200
 
 
 if __name__ == '__main__':

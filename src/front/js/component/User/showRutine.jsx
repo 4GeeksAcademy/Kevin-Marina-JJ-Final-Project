@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Context } from "../../store/appContext";
 import Loader from "../User/loader.jsx";
-
 import "../../../styles/User-styles/showRutine.css";
 
 const UserRoutine = () => {
@@ -31,13 +30,13 @@ const UserRoutine = () => {
 
     return (
         <div className='routine-container'>
-            <h2 className='routine-title'>Your Current Routine</h2>
+            <h2 className='routine-title'>Your Current <span className='green-text'>Routine</span></h2>
             <div className='routine-table-container'>
                 <table className='routine-table'>
                     <thead>
                         <tr>
                             {weekDays.map((day) => (
-                                <th key={day}>{day}</th>
+                                <th key={day} className='table-day'><span className='green-text'>{day}</span></th>
                             ))}
                         </tr>
                     </thead>

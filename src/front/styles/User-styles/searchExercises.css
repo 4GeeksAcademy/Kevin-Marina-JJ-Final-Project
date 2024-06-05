@@ -12,6 +12,7 @@
   font-size: 30px;
   margin-bottom: 50px;
   text-align: center;
+  color: var(--background-color);
 }
 
 .input-container {
@@ -24,24 +25,36 @@
 }
 
 .search-input {
-  height: 76px;
-  text-align: center;
-  font-weight: 700;
-  border: none;
-  border-radius: 40px;
-  width: 80%;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--white-text);
+  color: var(--background-color);
 }
 
 .search-btn {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  border-radius: 40px;
-  height: 76px;
-  width: 20%;
+  width: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
   border: 1px solid var(--primary-color);
+  background-color: var(--background-color);
+  color: var(--white-text);
+  font-weight: 700;
+  border: none;
   cursor: pointer;
-  text-transform: none;
-  font-size: 1rem;
+}
+
+.search-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+.search-btn:active {
+  background-color: var(--hover-button-background-color);
+  color: var(--background-color);
 }
 
 .body-part-container {

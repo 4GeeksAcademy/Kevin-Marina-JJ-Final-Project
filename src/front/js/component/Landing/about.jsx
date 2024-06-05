@@ -7,6 +7,9 @@ const About = () => {
 
   return (
     <article>
+      <h2 className="about-title">
+        Why <span className="green-text">Fitness</span> is important?
+      </h2>
       <div className="about-content">
         <img
           className="about-img"
@@ -14,9 +17,7 @@ const About = () => {
           alt="woman streching about img"
         />
         <div className="about-text">
-          <h3>
-            Why <span className="green-text">Fitness</span> is important?
-          </h3>
+
           {isMobile ? (
             <p className="about-parr">
               Welcome to MKJ, your gateway to a healthier lifestyle through

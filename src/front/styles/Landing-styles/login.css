@@ -1,31 +1,67 @@
-.login-button {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+.login-label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--background-color);
 }
 
-.login-button:hover {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
+.login-input,
+.login-submit-button,
+.login-close-button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+
+}
+
+.login-input {
+  background-color: var(--white-text);
+  color: var(--background-color);
 }
 
 .login-modal-title {
   color: var(--primary-color);
+  margin-bottom: 20px;
 }
 
 .login-submit-button,
 .login-close-button {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: var(--background-color);
+  color: var(--white-text);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
 }
 
 .login-submit-button:hover,
 .login-close-button:hover {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+.login-submit-button:active,
+.login-close-button:active {
+  background-color: var(--hover-button-background-color);
+  color: var(--background-color);
+}
+
+/* Login Modal opener*/
+
+.login-button {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  font-weight: 700;
+  padding: 10px 20px;
+  border: 1px solid var(--border-button-color);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: var(--hover-button-background-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--primary-color);
+
 }

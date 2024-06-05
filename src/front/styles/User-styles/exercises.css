@@ -8,6 +8,7 @@
 .exercises-title {
   align-self: center;
   margin-bottom: 46px;
+  color: var(--background-color);
 }
 
 .exercises-result-container {
@@ -37,23 +38,23 @@
 }
 
 .pagination .page-link {
-  color: var(--primary-color);
+  color: var(--background-color);
   padding: 8px 12px;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--background-color);
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .pagination .page-link:hover {
-  background-color: var(--primary-color);
+  background-color: var(--background-color);
   color: var(--white-text);
 }
 
 .pagination .active .page-link {
-  background-color: var(--primary-color);
+  background-color: var(--background-color);
   color: var(--white-text);
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--background-color);
 }
 
 .pagination .page-item.disabled .page-link {

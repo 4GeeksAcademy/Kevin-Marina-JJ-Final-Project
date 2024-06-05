@@ -57,7 +57,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
 
   return (
     <section className="exercise-container">
-      <h2 className="title-exercise">Search exercises for more info</h2>
+      <h2 className="title-exercise"><span className="green-text">Search</span> exercises for more info</h2>
       <div className="input-container">
         <input
           className="search-input"

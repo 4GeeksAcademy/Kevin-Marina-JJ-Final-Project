@@ -1,59 +1,44 @@
 .user-container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    grid-template-areas:
-        "userdata calendar"
-        "routine routine"
-        "search search"
-        "exercises exercises";
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto auto 1fr;
     gap: 10px;
     padding: 20px;
     box-sizing: border-box;
     margin-top: 90px;
 }
 
-
-
-.user-data {
-    grid-area: userdata;
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-
-.user-routine {
-    grid-area: routine;
-}
-
+.user-data,
 .user-calendar {
-    grid-area: calendar;
-    height: auto;
-
+    flex: 1;
 }
 
-.search-exercise {
-    grid-area: search;
+.user-routine,
+.search-exercise,
+.exercises {
+    width: 100%;
 }
 
 .exercises {
-    grid-area: exercises;
     overflow-y: auto;
 }
 
 @media (max-width: 768px) {
     .user-container {
-        grid-template-areas:
-            "userdata"
-            "calendar"
-            "routine"
-            "search"
-            "exercises";
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        gap: 10px;
+        flex-direction: column;
         padding: 20px;
         box-sizing: border-box;
         margin-top: 90px;
         height: auto;
+    }
+
+    .user-header {
+        flex-direction: column;
     }
 }

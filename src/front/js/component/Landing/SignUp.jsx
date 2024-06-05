@@ -59,7 +59,7 @@ export const SignUp = () => {
 						<div className="modal-content">
 							<h2 className="signup-modal-title">Sign Up</h2>
 							<form onSubmit={handleSubmit}>
-								<label htmlFor="email">
+								<label htmlFor="email" className="signup-label">
 									Email
 								</label>
 								<input
@@ -68,9 +68,10 @@ export const SignUp = () => {
 									value={email}
 									onChange={handleEmailChange}
 									placeholder="Email"
+									className="signup-input"
 									required
 								/>
-								<label htmlFor="password">
+								<label htmlFor="password" className="signup-label">
 									Password
 								</label>
 								<input
@@ -78,10 +79,11 @@ export const SignUp = () => {
 									name="password"
 									value={password}
 									onChange={handlePasswordChange}
-									placeholder="Contraseña"
+									placeholder="Password"
+									className="signup-input"
 									required
 								/>
-								<label htmlFor="confirmPassword">
+								<label htmlFor="confirmPassword" className="signup-label">
 									Confirm Password
 								</label>
 								<input
@@ -89,14 +91,15 @@ export const SignUp = () => {
 									name="confirmPassword"
 									value={confirmPassword}
 									onChange={handleConfirmPassword}
-									placeholder="Confirmar Contraseña"
+									placeholder="Confirm Password"
+									className="signup-input"
 									required
 								/>
-								<button className="button-input singup-submit-button" type="submit">
+								<button className="button-input singup-submit-button signup-button" type="submit">
 									Sign Up
 								</button>
 								<button
-									className="button-input singup-close-button"
+									className="button-input singup-close-button signup-button"
 									onClick={handleClose}
 								>
 									Close

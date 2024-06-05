@@ -1,7 +1,56 @@
 .userCard {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     text-align: center;
 
+}
+
+.trainer-exercise {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.user-title {
+    color: var(--background-color);
+}
+
+.user-search-title {
+    color: var(--background-color);
+}
+
+.input-container {
+    width: 100%;
+    align-self: center;
+
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--white-text);
+    color: var(--background-color);
+}
+
+.search-btn {
+    width: auto;
+    padding: 10px;
+    margin: 0 5px 10px 5px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--white-text);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+.clear-btn {
+    margin-left: 5px;
 }
 
 .user-list {
@@ -12,15 +61,17 @@
     justify-content: center;
 }
 
+
+
+
 .user-card {
-    border: 1px solid #02b532;
+    border: 1px solid var(--primary-color);
     border-radius: 8px;
-    padding: 16px;
+    padding: 10px;
     min-width: 250px;
     max-width: 250px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 16px;
-    background-color: #fff;
     transition: box-shadow 0.3s;
 }
 
@@ -28,28 +79,37 @@
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.user-card h2 {
+.user-name {
     margin-top: 0;
     font-size: 20px;
     margin-bottom: 8px;
+    color: var(--background-color);
 }
 
-.user-card p {
+.user-data {
     margin: 8px 0;
+    color: var(--background-color);
 }
 
-.user-card button {
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
+.more-info-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--white-text);
+    font-weight: 700;
     border: none;
-    background-color: #02b532;
-    color: white;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    margin-top: 8px;
+    cursor: pointer;
 }
 
-.user-card button:hover {
-    background-color: #029422;
+.more-info-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.more-info-btn:active {
+    background-color: var(--hover-button-background-color);
+    color: var(--background-color);
 }

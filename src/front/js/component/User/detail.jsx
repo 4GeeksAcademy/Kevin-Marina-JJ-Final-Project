@@ -29,8 +29,8 @@ const Detail = ({ exerciseDetail }) => {
       <div className="detail-text">
         <h3 className="detail-name">{name}</h3>
         <h6 className="detail-description">
-          Exercises keep you strong. <span className="detail-exercise-name" style={{ textTransform: "capitalize" }}>{name}</span> bup is one
-          of the best <br /> exercises to target your {target}. It will help you
+          Exercises keep you strong. <span className="detail-exercise-name green-text">{name}</span> bup is one
+          of the best <br /> exercises to target your <span className="green-text">{target}</span>. It will help you
           improve your <br /> mood and gain energy.
         </h6>
         {extraDetail?.map((item) => (

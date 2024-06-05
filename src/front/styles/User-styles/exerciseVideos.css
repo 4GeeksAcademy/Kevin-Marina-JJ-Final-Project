@@ -6,18 +6,21 @@
 
 .videos-heading {
     margin-bottom: 20px;
+    color: var(--background-color);
 }
 
 .videos-exercise-name {
-    color: #02b532;
+    color: var(--primary-color);
     text-transform: capitalize;
 }
 
 .videos-container {
     display: flex;
     align-items: center;
+    overflow-x: auto;
     justify-content: center;
     gap: 20px;
+
 }
 
 .exercise-video {
@@ -25,10 +28,10 @@
     flex-direction: column;
     text-decoration: none;
     color: inherit;
-    width: 400px;
+    min-width: 250px;
+    min-height: 370px;
     border: 1px solid var(--primary-color);
     border-radius: 10px;
-    overflow-x: auto;
     transition: transform 0.3s ease;
 }
 
@@ -51,11 +54,11 @@
     margin: 0;
     font-size: 16px;
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--background-color);
 }
 
 .video-channel {
     margin: 0;
     font-size: 14px;
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }

@@ -1,6 +1,7 @@
 .horizontal-bar {
   display: flex;
   height: 100%;
+  max-height: max-content;
   gap: 20px;
   overflow-x: auto;
 }

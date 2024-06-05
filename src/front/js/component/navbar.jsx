@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import Logo from "./../../img/logo.png";
 import { Login } from "./Landing/login.jsx";
@@ -31,10 +31,10 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
-      <div className="container-fluid justify-content-between align-items-center">
-        <NavLink to="/" className="navbar-brand d-flex align-items-center me-0 me-lg-3">
+      <div className="container-fluid justify-content-between align-items-center d-flex">
+        <Link to="/" className="navbar-brand d-flex align-items-center me-0 me-lg-3">
           <img src={Logo} alt="logo" className="logo-svg" />
-        </NavLink>
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -51,32 +51,32 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link a-home anchor" onClick={() => scrollToSection("home")}>
+              <Link to="/" className="nav-link a-home anchor" onClick={() => scrollToSection("home")}>
                 HOME
-              </NavLink>
+              </Link>
             </li>
             <li className="nav-item">
-              <NavLink to="/#about" className="nav-link a-about anchor" onClick={() => scrollToSection("about")}>
+              <Link to="/#about" className="nav-link a-about anchor" onClick={() => scrollToSection("about")}>
                 ABOUT
-              </NavLink>
+              </Link>
             </li>
             {loggedin ? (
               store.role === "user" ? (
-                <NavLink to={`/user/${store.user_id}`} className="nav-link a-services anchor">
+                <Link to={`/user/${store.user_id}`} className="nav-link a-services anchor">
                   PROFILE
-                </NavLink>
+                </Link>
               ) : store.role === "trainer" ? (
-                <NavLink to={`/trainer/${store.user_id}`} className="nav-link a-services anchor">
+                <Link to={`/trainer/${store.user_id}`} className="nav-link a-services anchor">
                   PROFILE
-                </NavLink>
+                </Link>
               ) : null
             ) : (
-              <NavLink to="/#services" className="nav-link a-services anchor" onClick={() => scrollToSection("services")}>
+              <Link to="/#services" className="nav-link a-services anchor" onClick={() => scrollToSection("services")}>
                 SERVICES
-              </NavLink>
+              </Link>
             )}
             <li className="nav-item">
-              <a onClick={scrollToFooter} className="nav-link a-contact anchor">
+              <a onClick={() => navigate('/contact')} className="nav-link a-contact anchor">
                 CONTACT
               </a>
             </li>

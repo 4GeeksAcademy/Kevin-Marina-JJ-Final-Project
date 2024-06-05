@@ -52,7 +52,7 @@ export const Login = () => {
           <div className="modal-content">
             <h2 className="login-modal-title">Login</h2>
             <form onSubmit={handleLogin}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email" className="login-label">Email</label>
               <input
                 type="email"
                 id="email"
@@ -60,9 +60,10 @@ export const Login = () => {
                 value={data.email}
                 onChange={handleInputChange}
                 placeholder="Email"
+                className="login-input"
                 required
               />
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" className="login-label">Password</label>
               <input
                 type="password"
                 id="password"
@@ -70,6 +71,7 @@ export const Login = () => {
                 value={data.password}
                 onChange={handleInputChange}
                 placeholder="Password"
+                className="login-input"
                 required
               />
               <button type="submit" className="login-submit-button">Login</button>
@@ -78,6 +80,7 @@ export const Login = () => {
                 setData({ email: "", password: "" });
               }}>Close</button>
             </form>
+            {/* <p onClick={() => { setShowModal(false); navigate('/forgotPassword') }}>Forgot your password?</p> */}
           </div>
         </div>
       )}

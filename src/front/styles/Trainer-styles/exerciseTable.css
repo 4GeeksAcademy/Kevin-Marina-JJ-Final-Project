@@ -1,26 +1,36 @@
 .exercise-table-container {
     display: flex;
     justify-content: center;
+
 }
 
 .exercise-table {
     width: 80%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .exercise-table th {
-    background-color: var(--secondary-color);
+    background-color: var(--white-text);
     color: var(--primary-color);
+    font-weight: 700;
+    text-align: center;
     text-align: left;
-    border: 1px solid #ddd;
+    border: 1px solid var(--primary-color);
     padding: 8px;
 }
 
 .exercise-table td {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    border: 1px solid #ddd;
+    background-color: var(--white-text);
+    color: var(--background-color);
+    border: 1px solid var(--primary-color);
     padding: 8px;
+}
+
+.exercise-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .remove-exercise {

@@ -13,6 +13,7 @@ const MainView = () => {
   useEffect(() => {
     setLoggedIn(!!store.token);
   }, [store.token]);
+
   return (
     <>
       <div id="home" className="main-view-container">

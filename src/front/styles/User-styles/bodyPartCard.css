@@ -8,9 +8,10 @@
   margin-right: 20px;
   padding-top: 10px;
 }
+
 .part-name {
   font-size: 24px;
   font-weight: 700;
-  color: rgb(11, 75, 11);
+  color: var(--background-color);
   text-transform: capitalize;
 }

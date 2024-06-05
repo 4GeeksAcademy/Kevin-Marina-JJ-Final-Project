@@ -73,7 +73,7 @@ const TrainerExercise = () => {
       Swal.fire({
         title: "Error",
         text: "Please select an exercise",
-        type: "error",
+        icon: "error",
         showConfirmButton: false,
         timer: 1000,
       });
@@ -128,7 +128,7 @@ const TrainerExercise = () => {
         Swal.fire({
           title: "Success",
           text: "Routine saved successfully",
-          type: "success",
+          icon: "success",
           showConfirmButton: true,
         });
       } else {
@@ -136,7 +136,7 @@ const TrainerExercise = () => {
         Swal.fire({
           title: "Error",
           text: "Error saving routine",
-          type: "error",
+          icon: "error",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -145,7 +145,7 @@ const TrainerExercise = () => {
       Swal.fire({
         title: "Error",
         text: "Error saving routine",
-        type: "error",
+        icon: "error",
         showConfirmButton: false,
         timer: 1000,
       });

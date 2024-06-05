@@ -1,5 +1,5 @@
  .gym-footer {
-   background-color: var(--secondary-color);
+   background-color: var(--background-color);
    height: auto;
    display: flex;
    width: 100%;
@@ -12,10 +12,16 @@
    border-radius: 20%;
  }
 
- .gym-footer a,
- span {
+ .link_footer,
+ .footer-text {
    text-decoration: none;
-   color: var(--primary-color);
+   color: var(--white-text);
+ }
+
+ .link_footer:hover,
+ .footer-text:hover {
+   text-decoration: none;
+   color: var(--button-background-color);
  }
 
  .gym-footer span {
@@ -42,13 +48,13 @@
 
  .link {
    text-decoration: none;
-   color: var(--primary-color);
+   color: var(--hover-color);
 
  }
 
 
  .github:hover,
  .linkedin:hover {
-   filter: drop-shadow(0 0 10px var(--primary-color));
-   color: var(--primary-color)
+   filter: drop-shadow(0 0 10px var(--button-background-color));
+   color: var(--button-background-color)
  }

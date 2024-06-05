@@ -1,52 +1,61 @@
 .routine-container {
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--primary-color);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    width: auto;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 2%;
-    background-image: var(--gradient-background);
+    border-radius: 5%;
+    background-image: var(--white-text);
+    color: var(--background-color);
+
 }
+
+
 
 .routine-table-container {
     width: 100%;
     overflow-x: auto;
 
+
 }
 
 .routine-loader-title {
-    border: 2px solid var(--primary-color);
-
-
+    border: 1px solid var(--primary-color);
     font-size: 1.5rem;
-
     text-align: center;
+
 }
 
 .routine-table {
     width: 100%;
-    border-collapse: collapse;
+    font-weight: 700;
 
 }
 
 .routine-table th,
 .routine-table td {
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--primary-color);
     padding: 10px;
     text-align: center;
-    color: var(--white-text);
+    font-weight: 700;
 }
 
 .routine-table th {
-    background-color: var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--white-text);
+    font-weight: 700;
 }
 
 .routine-title {
-    color: var(--white-text);
     font-size: 1.5rem;
     margin-bottom: 20px;
+}
+
+.table-day {
+    font-weight: 700;
 }
 
 .exercise-list {
@@ -75,28 +84,20 @@
     }
 
     .routine-table thead tr {
-        display: table-row;
-
+        display: none;
     }
 
     .routine-table th,
     .routine-table td {
-        width: auto;
+        width: 100%;
         display: block;
-
-    }
-
-    .routine-table th {
-        text-align: center;
-
+        text-align: left;
+        border: none;
     }
 
     .routine-table td::before {
         content: attr(data-label);
-
-        /*  width: calc(50% - 20px); */
-        white-space: nowrap;
         font-weight: bold;
+        display: block;
     }
-
 }

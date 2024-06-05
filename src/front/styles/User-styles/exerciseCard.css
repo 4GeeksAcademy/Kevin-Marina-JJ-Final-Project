@@ -15,11 +15,12 @@
   transition: transform 0.3s;
   border: 1px solid var(--primary-color);
   min-width: 300px;
+  min-height: 450px;
 }
 
-.exercise-card-container img {
+.exercise-card-image {
   width: 100%;
-  height: auto;
+  max-height: 200px;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
 }
@@ -32,15 +33,15 @@
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
-  color: var(--white-text);
 }
 
 .primary-muscle {
   margin: 5px 0;
   text-decoration: none;
   color: var(--primary-color);
-  background-color: var(--secondary-color);
+  background-color: var(--white-text);
   font-size: 14px;
+  border: 1px solid var(--background-color);
   border-radius: 20px;
   text-transform: capitalize;
   padding: 5px 10px;

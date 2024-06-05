@@ -17,7 +17,7 @@ export const Footer = () => (
           rel="noopener noreferrer"
         >
           <FaGithub className="github" />
-          <span>Marina</span>
+          <span className="footer-text">Marina</span>
 
         </a>
       </li>
@@ -30,7 +30,7 @@ export const Footer = () => (
           rel="noopener noreferrer"
         >
           <CiLinkedin className="linkedin" />
-          <span>Marina</span>
+          <span className="footer-text">Marina</span>
 
         </a>
       </li>
@@ -44,7 +44,7 @@ export const Footer = () => (
           rel="noopener noreferrer"
         >
           <FaGithub className="github" />
-          <span>Kevin</span>
+          <span className="footer-text">Kevin</span>
 
         </a>
       </li>
@@ -57,7 +57,7 @@ export const Footer = () => (
           rel="noopener noreferrer"
         >
           <CiLinkedin className="linkedin" />
-          <span>Kevin</span>
+          <span className="footer-text">Kevin</span>
 
         </a>
       </li>
@@ -71,7 +71,7 @@ export const Footer = () => (
           rel="noopener noreferrer"
         >
           <FaGithub className="github" />
-          <span>Jose Joaquin</span>
+          <span className="footer-text">Jose Joaquin</span>
 
         </a>
       </li>
@@ -84,7 +84,7 @@ export const Footer = () => (
           rel="noopener noreferrer"
         >
           <CiLinkedin className="linkedin" />
-          <span>Jose Joaquin</span>
+          <span className="footer-text">Jose Joaquin</span>
 
         </a>
       </li>

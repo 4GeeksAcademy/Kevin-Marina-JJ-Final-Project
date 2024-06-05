@@ -17,6 +17,8 @@ import ScrollToTop from "./component/scrollToTop.jsx";
 import ExerciseDetail from "./pages/User/exerciseDetail.js";
 import ProtectedRoute from "./component/protectedRoute.jsx";
 import TrainerUserDetail from "./pages/Trainer/trainerUserDetail.js";
+import Services from "./pages/Landing/servicesPage.js";
+import ContactPage from "./pages/Landing/contactPage.js";
 
 const Layout = () => {
 
@@ -32,6 +34,8 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route path="/" element={<Landing />} />
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/contact" element={<ContactPage />} />
 
                         <Route element={userToken ? <UserForm /> : <Navigate to="/" />} path="/user-form" />
 
@@ -58,5 +62,3 @@ const Layout = () => {
 };
 
 export default injectContext(Layout);
-
-

@@ -1,6 +1,7 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, JSON
+from sqlalchemy import Column, ForeignKey, Integer, String, JSON, LargeBinary
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
+
 
 db = SQLAlchemy()
 
@@ -64,10 +65,11 @@ class User_data(db.Model):
     user_height = Column(Integer, nullable=True)
     user_illness = Column(String(250), nullable=False)
     user_objetives = Column(String(250), nullable=True)
-    user_age= Column(Integer, nullable=False)
+    user_age = Column(Integer, nullable=False)
     trainer_data_id = Column(Integer, ForeignKey(Trainer_data.trainer_data_id))
-    exercises = relationship("Exercise", backref="user_data",cascade="all,delete-orphan", lazy=True)
-    routines = relationship("Routines", backref="user_data",cascade="all,delete-orphan", lazy=True)
+    profile_picture = relationship("Image", backref="user_data", cascade="all,delete-orphan", lazy=True)
+    exercises = relationship("Exercise", backref="user_data", cascade="all,delete-orphan", lazy=True)
+    routines = relationship("Routines", backref="user_data", cascade="all,delete-orphan", lazy=True)
     
     def __repr__(self):
         return f'<User_data {self.user_id}>'
@@ -81,6 +83,7 @@ class User_data(db.Model):
             "user_height": self.user_height,
             "user_illness": self.user_illness,
             "user_objetives": self.user_objetives,
+            "user_age": self.user_age,
             "trainer_data_id": self.trainer_data_id
         }
 
@@ -101,6 +104,24 @@ class Routines(db.Model):
             'historical': self.historical,
         }
 
+class Image(db.Model):
+    id = Column(Integer, primary_key=True)
+    img = Column(LargeBinary, nullable=False)  
+    name = Column(String(250), nullable=False)
+    mimetype = Column(String(250), nullable=False)
+    user_data_id = Column(Integer, ForeignKey(User_data.user_id), nullable=False)
+    
+    def __repr__(self):
+        return f'<Image {self.id}>'
+    
+    def serialize(self):
+        return {
+            'id': self.id,
+            'user_data_id': self.user_data_id,
+            'name': self.name,
+            'img': self.img,
+            'mimetype': self.mimetype,
+        }
 class Exercise(db.Model):
     id = Column(Integer, primary_key=True)
     exercise_name = Column(String(100), nullable=False, unique=True)

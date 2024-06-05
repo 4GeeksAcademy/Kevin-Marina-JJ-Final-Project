@@ -41,6 +41,22 @@ const TrainerUserDetail = () => {
         getUserData();
     }, []);
 
+    const handleDeleteUser = async () => {
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#0B3D91',
+            cancelButtonColor: '#8BC34A',
+            confirmButtonText: 'Yes, delete it!'
+        });
+
+        if (result.isConfirmed) {
+            await actions.deleteUser(userId);
+            navigate(`/trainer/${store.user_id}`);
+        }
+    }
 
 
     if (!formData) {
@@ -53,18 +69,20 @@ const TrainerUserDetail = () => {
     }
 
     return (
-        <>
-            <div className='personalTrainerData'>
+        <section className="user-detail-view">
+            <div className='personal-trainer-data'>
                 <div className='user-info'>
-                    <p className='dataForm'>Full Name: {formData.user_name}</p>
-                    <p className='dataForm'>Weight: {formData.user_weight}</p>
-                    <p className='dataForm'>Illness: {formData.user_illness}</p>
-                    <p className='dataForm'>Height: {formData.user_height}</p>
-                    <p className='dataForm'>Objectives: {formData.user_objetives}</p>
+                    <p className='dataForm'><span className='green-text dataForm-title'>Full Name:</span> {formData.user_name}</p>
+                    <p className='dataForm'><span className='green-text dataForm-title'>Age:</span> {formData.user_age}</p>
+                    <p className='dataForm'><span className='green-text dataForm-title'>Height:</span> {formData.user_height}</p>
+                    <p className='dataForm'><span className='green-text dataForm-title'>Weight:</span> {formData.user_weight}</p>
+                    <p className='dataForm'><span className='green-text dataForm-title'>Illness:</span> {formData.user_illness}</p>
+                    <p className='dataForm'><span className='green-text dataForm-title'>Objectives:</span> {formData.user_objetives}</p>
                 </div>
+                <button onClick={handleDeleteUser} className="delete-user-btn">Delete User</button>
             </div>
             <TrainerExercise />
-        </>
+        </section>
     );
 };
 
